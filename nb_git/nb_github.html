@@ -1,0 +1,1779 @@
+<!DOCTYPE html>
+<html class="whatinput-types-initial" dir="ltr" data-whatinput="initial" data-whatintent="mouse" lang="en"><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Utiliser Git avec Apache NetBeans</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Using Git Support in NetBeans IDE - Apache NetBeans">
+    <meta name="author" content="Apache NetBeans">
+    <meta name="keywords" content="Apache NetBeans, Tutorials, Using Git Support in NetBeans IDE">
+    <meta name="generator" content="Apache NetBeans">
+    <link rel="stylesheet" href="ress/font-awesome.css">
+     <link rel="stylesheet" href="ress/default.css"> 
+    <link rel="stylesheet" href="ress/netbeans.css">
+    <link rel="apple-touch-icon" sizes="180x180" href="https://netbeans.apache.org/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="https://netbeans.apache.org/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="https://netbeans.apache.org/favicon-16x16.png">
+    <link rel="manifest" href="https://netbeans.apache.org/site.webmanifest">
+    <link rel="mask-icon" href="https://netbeans.apache.org/safari-pinned-tab.svg" color="#5bbad5">
+    <meta name="msapplication-TileColor" content="#ffc40d">
+    <meta name="theme-color" content="#ffffff">
+    <link href="ress/css.css" rel="stylesheet"> 
+    <!--
+        Licensed to the Apache Software Foundation (ASF) under one
+        or more contributor license agreements.  See the NOTICE file
+        distributed with this work for additional information
+        regarding copyright ownership.  The ASF licenses this file
+        to you under the Apache License, Version 2.0 (the
+        "License"); you may not use this file except in compliance
+        with the License.  You may obtain a copy of the License at
+        http://www.apache.org/licenses/LICENSE-2.0
+        Unless required by applicable law or agreed to in writing,
+        software distributed under the License is distributed on an
+        "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+        KIND, either express or implied.  See the License for the
+        specific language governing permissions and limitations
+        under the License.
+    -->
+<meta class="foundation-mq"></head>
+
+
+    <body>
+        
+
+<div class="title-bar" data-responsive-toggle="responsive-menu" data-hide-for="medium" style="display: none;" data-e="mhdf7x-e">
+    <button type="button" data-toggle="responsive-menu"><i style="font-size: 32px; color: #fff; padding: 8px" class="fa fa-bars"></i></button>
+    <div class="title-bar-title">Apache NetBeans</div>
+</div>
+<div class="top-bar" id="responsive-menu">
+    <div class="top-bar-left">
+        <a class="title" href="https://netbeans.apache.org/"><img src="ress/apache-netbeans.svg" style="padding: 8px; height: 48px;"> Apache NetBeans</a>
+    </div>
+    <div class="top-bar-right">
+        <ul class="vertical medium-horizontal menu dropdown" data-responsive-menu="drilldown medium-dropdown" role="menubar" data-e="ioadqs-e" data-mutate="ug8rfu-responsive-menu">
+            <li role="menuitem"> <a href="https://netbeans.apache.org/community/index.html">Community</a> </li>
+            <li role="menuitem"> <a href="https://netbeans.apache.org/participate/index.html">Participate</a> </li>
+            <li role="menuitem"> <a href="https://blogs.apache.org/netbeans/">Blog</a></li>
+            <li role="menuitem"> <a href="https://netbeans.apache.org/help/index.html">Get Help</a> </li>
+            <li role="menuitem"> <a href="https://plugins.netbeans.apache.org/">Plugins</a> </li>
+            <li role="menuitem"> <a href="https://netbeans.apache.org/download/index.html">Download</a> </li>
+        </ul>
+    </div>
+</div>
+
+
+        
+<!-- src/templates/news -->
+<section class="hero news alternate">
+    <div class="grid-container">
+        <div class="cell">
+            <div class="annotation">Latest release</div>
+            <h1>Apache NetBeans 12.4</h1>
+            <p><a class="button success" href="https://netbeans.apache.org/download/nb124/nb124.html">Find out more</a></p>
+        </div>
+    </div>
+</section>
+
+        <div class="grid-container main-content tutorial">
+            <h1 class="sect0">Using Git in Apache NetBeans</h1>
+            
+            <div class="sectionbody">
+              <div class="admonitionblock note">
+                <table>
+                  <tbody><tr>
+                  <td class="icon"><i class="fa icon-warn" title="Note"></i></td>
+                  <td class="content">Les bases de la gestion de vesion avec Git doivent être acquises avant d'aborder ce document. 
+                  En cas de lacunes, voir le livre numérique suivant : 
+                     <a href="https://git-scm.com/book/fr/v2">Pro Git (Scott Chacon, Ben Straub)</a>.
+                     </td>
+                  </tr><tr>
+                  <td class="icon"><i class="fa icon-warn" title="Note"></i></td>
+                  <td class="content">Ce document est une traduction de : 
+                     <a href="https://netbeans.apache.org/kb/docs/ide/git.html">Using Git in Apache NetBeans</a>, 
+                     en cas d'imprécision(s) ou d'erreur(s) consulter la page d'origine.
+                     </td>
+                  </tr><tr>
+                  <td class="icon"><i class="fa icon-note" title="Note"></i></td>
+                  <td class="content">This tutorial needs a review. 
+                     You can <a href="https://issues.apache.org/jira/projects/NETBEANS/issues">open a JIRA issue</a>, 
+                     or <a href="https://github.com/apache/netbeans-website/blob/master/netbeans.apache.org/src/content/kb/docs/ide/git.asciidoc" title="Edit this tutorial in github">edit it in GitHub </a>
+                     following these <a href="https://netbeans.apache.org/kb/docs/contributing.html">contribution guidelines.</a></td>
+                  </tr></tbody>
+                </table>
+              </div>
+            </div>
+            
+            <div id="toc" class="toc">
+<div id="toctitle"></div>
+<ul class="sectlevel1">
+<li><a href="#_initializing_a_git_repository">Initialiser un dépôt Git</a></li>
+<li><a href="#_cloning_a_git_repository">Cloning a Git Repository</a>
+<ul class="sectlevel2">
+<li><a href="#_cloning_a_repository_from_github_via_ssh_protocol">Cloning a Repository from GitHub via SSH protocol</a></li>
+<li><a href="#_adding_files_to_a_git_repository">Adding Files to a Git Repository</a></li>
+</ul>
+</li>
+<li><a href="#_editing_files">Editing Files</a>
+<ul class="sectlevel2">
+<li><a href="#_viewing_changes_in_the_source_editor">Viewing Changes in the Source Editor</a></li>
+<li><a href="#_viewing_file_status_information">Viewing File Status Information</a></li>
+<li><a href="#_comparing_file_revisions">Comparing File Revisions</a></li>
+<li><a href="#_reverting_changes">Reverting Changes</a></li>
+</ul>
+</li>
+<li><a href="#_committing_sources_to_a_repository">Committing Sources to a Repository</a></li>
+<li><a href="#_working_with_branches">Working with Branches</a>
+<ul class="sectlevel2">
+<li><a href="#_creating_a_branch">Creating a Branch</a></li>
+<li><a href="#_checking_out">Checking Out</a></li>
+<li><a href="#_merging">Merging</a></li>
+<li><a href="#_deleting_a_branch">Deleting a Branch</a></li>
+</ul>
+</li>
+<li><a href="#_working_with_remote_repositories">Working with Remote Repositories</a>
+<ul class="sectlevel2">
+<li><a href="#_fetching">Fetching</a></li>
+<li><a href="#_pulling">Pulling</a></li>
+<li><a href="#_pushing">Pushing</a></li>
+</ul>
+</li>
+<li><a href="#_summary">Summary</a></li>
+</ul>
+</div>
+<div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>L'IDE Apache NetBeans prend en charge le <a href="https://git-scm.com/">système de contrôle de version Git</a>.
+Grâce à cette fonctionnalité, vous pouvez effectuer les tâches de gestion des versions directement à partir de vos projets.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_initializing_a_git_repository">Initialiser un dépôt Git (Git Repository)</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Pour initialiser un dépôt Git à partir de fichiers existants, vous devez effectuer les étapes suivantes :</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Dans la fenêtre Projets, sélectionnez un projet (non versionné) et faire un click-droit sur le nom du projet..</p>
+</li>
+<li>
+<p>Dans le menu contextuel, choisir : <code>Versioning</code>  &gt;  <code>Initialize Git Repository</code>
+(vous pouvez aussi, dans le menu principal, choisir : <code>Team</code>  &gt;  <code>Git</code>  &gt;  <code>Initialize repository</code> ).</p>
+</li>
+</ol>
+</div>
+<div class="openblock">
+<div class="content">
+<div class="imageblock left">
+<div class="content">
+<a class="image cboxElement" href="https://netbeans.apache.org/kb/docs/ide/images/initialize-git-repo.png"><img src="ress/initialize-git-repo-small.png" alt="initialize git repo small"></a>
+</div>
+</div>
+</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic" start="3">
+<li>
+<p>Spécifiez le chemin d'accès au dépôt dans lequel vous voulez stocker vos fichiers "versionnés" dans la boite de dialogue <code>Initialize a Git Repository </code>
+ ou cliquez sur "Browse" et selectionnez le répertoire requis (voir ci-dessous).</p>
+</li>
+<li>
+<p>Cliquer sur "OK".</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>Un sous-répertoire  <code>.git</code>  est créé dans le dossier que vous avez spécifié à l'étape 3 ci-dessus
+(votre dossier de projet NetBeans par défaut), qui sera votre dépôt Git local où toutes les données de votre projet seront stockées.
+Tous les fichier de ce dossier sont maintenant sous contrôle de version.
+Vous pouver ouvrir <code>Window</code>  &gt;  <code>Output</code>  &gt;  <code>Output</code>
+afin de visualiser le résultat du processus  de creation exécuté dans votre répertoire de travail.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="ress/output-init.png" alt="output init">
+</div>
+</div>
+<div class="paragraph">
+<p>Tous les fichiers du projet sont notés comme  "<code>Added</code>"  dans l'arborescence de travail. Pour visualiser le
+<a href="#viewFileStatus">statut</a>,
+ d'un fichier, placer le curseur sur son nom dans le fenétre "Projects". Celui-ci s'affiche en vert, dans une boite de message (voir 
+image ci dessous).</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="ress/new-locally.png" alt="new locally">
+</div>
+</div>
+<div class="paragraph">
+<p>Après avoir initialisé le dépôt Git du projet, vous pouvez  <a href="#add">ajouter</a> des fichiers ou
+<a href="#committing">faire un "commit"</a> (validation) directement dans le dépôt Git.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_cloning_a_git_repository">Cloner un dépôt Git (cloning)</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Pour obtenir une copie d'un dépôt Git déjà existant, vous devez le cloner.
+Vérifiez l'URL du dépôt Git avant de démarrer l'assistant "Clone Repository" dans NetBeans.</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Selectionner dans le menu principal  <code>Team</code>  &gt;  <code>Git</code>  &gt;  <code>Clone</code>. L'assistant "Clone Repository"  s"affiche.</p>
+</li>
+</ol>
+</div>
+<div class="openblock">
+<div class="content">
+<div class="imageblock left">
+<div class="content">
+<a class="image" href="https://netbeans.apache.org/kb/docs/ide/images/clone-wizard.png"><img src="ress/clone-wizard-small.png" alt="clone wizard small"></a>
+</div>
+</div>
+</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic" start="2">
+<li>
+<p>À l'étape "1 Repository" , renseignez le chemin du dépôt à cloner, ainsi que l'utilisateur et le mot de passe
+(ces information peuvent être mémorisées).</p>
+</li>
+<li>
+<p>(Optionnel) Si besoin vous pouvez renseigner les informations concernant le proxy via l'icone "Proxy Configuration ..."</p>
+</li>
+<li>
+<p>Cliquer sur "Next" pour passer à l'étape suivante de l'assistant.</p>
+</li>
+<li>
+<p>À l'étape "2 Remote Branches", (Branches distantes) sélectionnez la ou les branches du dépôts à récupérer "fetch" (télécharger)
+dans votre dépôt local. Cliquez sur "Next".</p>
+</li>
+<li>
+<p>À l'étape "3 Destination Directory", renseignez les information suivantes :</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Dans le champ "Parent Directory", le chemin du repertoire de destination sur vor disque ou le selectionner en cliquant sur "Browse".
+Le répertoire est prérempli avec le chemin par défaut de stockage de vos projets NetBeans.</p>
+</li>
+<li>
+<p>Dans le champ "Clone Name", le nom du sous-répertoire où sera stocké le projetc.
+(par défaut, le nom du projet Git).</p>
+</li>
+<li>
+<p>Dans la liste "Checkout Branch", selectionnez la branche à extraire dans l'arborescence de travail.</p>
+</li>
+<li>
+<p>Dans le champ  "Remote Name", le nom référençant le dépôt d'origine à être cloné.
+"<code>origin</code>"  est l'alias de ce dépôt, il est conseillé de garder cette valeur.</p>
+</li>
+<li>
+<p>Gardez la casse "Scan for NetBeans Projects after Clone" cochée. (Ce plugin 
+effectue les vérifications nécessaires concernant notamment les dépendances.)</p>
+</li>
+</ul>
+</div>
+</li>
+</ol>
+</div>
+<div class="olist arabic">
+<ol class="arabic" start="7">
+<li>
+<p>Cliquer sur "Finish".
+Un fois le dépôt cloné, le dossier des métadonnées  <code>.git</code>  est créé le répertoire local du projet.</p>
+</ol>
+</div>
+<div class="sect2">
+<h3 id="_cloning_a_repository_from_github_via_ssh_protocol">Cloner un dépôt GitHub via SSH</h3>
+<div class="admonitionblock note">
+<table>
+<tbody><tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Vous devez avoir un compte GitHub et être membre du projet pour pouvoir le cloner via SSH.
+</td>
+</tr>
+</tbody></table>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Selectionner  <code>Team</code>  &gt;  <code>Git</code>  &gt;  <code>Clone</code>  dans le menu principal. 
+L'assistant "Clone Repository" s"affiche.</p>
+</li>
+<li>
+<p>À l'étape "1 Remote Repository" de l'assitant, renseignez le chemin du dépôt à cloner dans le champ "Repository URL".
+Par example : <code>git@github.com:apache/netbeans.git</code> .</p>
+</li>
+<li>
+<p>Verifiez que le champ "Username"  contient <code>git</code>.</p>
+</li>
+<li>
+<p>Selectionnez l'option "Private/public key".</p>
+</li>
+<li>
+<p>(<strong>Ignorer cette étape si vous utiliser SSH-agent ou Pageant pour automatiser vos accès SSH au serveur Git.</strong>)
+Effectuez les étapes suivantes pour accéder au serveur Git à l'aide de votre clé SSH privée (SSH Key) et d'une phrase secrète (passphrase) :</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Renseigner le champ "Private Key File" en indiquant chemin du fichier où est enregistré votre clé, par exemple <code>C:\Users\key</code>.
+La clé doit être au format OpenSSH. Les clés générées sous Windows par "PuTTYgen" doiven être converties. </p>
+</li>
+<li>
+<p>Entez la phrase secrète correspondant à la clé dans le champ "Passphrase", par exemple,  <code>abcd</code>.</p>
+</li>
+<li>
+<p>(Optionnel) Si vous le souhaitez, vous pouvez selectionner l'option "Save Passphrase".</p>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>(<strong>Si vous utiliser SSH-agent ou Pageant pour automatiser vos accès SSH au serveur Git.</strong>)
+ Laissez les champs "Private Key File" et "Passphrase" vides afin laisser le soin à l'IDE de vous authentifier
+ via SSH-agent or Pageant.</p>
+</li>
+<li>
+<p>(Optionnel) Si besoin vous pouvez renseigner les informations concernant le proxy via l'icone "Proxy Configuration ..."</p>
+</li>
+</ol>
+</div>
+</li>
+</ul>
+</div>
+</li>
+</ol>
+</div>
+<div class="openblock feature">
+<div class="content">
+<div class="imageblock left">
+<div class="content">
+<a class="image cboxElement" href="https://netbeans.apache.org/kb/docs/ide/images/github-repo.png"><img src="ress/github-repo-small.png" alt="github repo small"></a>
+</div>
+</div>
+</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic" start="7">
+<li>
+<p>Cliquer sur "Next".</p>
+</li>
+<li>
+<p>À l'étape "2 Remote Branches", (Branches distantes) sélectionnez la ou les branches du dépôts à récupérer "fetch" (télécharger)
+dans votre dépôt local.</p>
+</li>
+</ol>
+</div>
+<div class="openblock feature">
+<div class="content">
+<div class="imageblock left">
+<div class="content">
+<a class="image cboxElement" href="https://netbeans.apache.org/kb/docs/ide/images/github-branches.png"><img src="ress/github-branches-small.png" alt="github branches small"></a>
+</div>
+</div>
+</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic" start="9">
+<li>
+<p>Cliquer sur "Next".</p>
+</li>
+<li>
+<p>À l'étape "3 Destination Directory", renseignez les information suivantes :</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Dans le champ "Parent Directory", le chemin du repertoire de destination sur vor disque ou
+le selectionner en cliquant sur "Browse". Le répertoire est prérempli avec le chemin par défaut
+de stockage de vos projets NetBeans.</p>
+</li>
+<li>
+<p>Dans le champ "Clone Name", le nom du sous-répertoire où sera stocké le projetc. (par défaut, le nom du projet Git).</p>
+</li>
+<li>
+<p>Dans la liste "Checkout Branch", selectionnez la branche à extraire dans l'arborescence de travail.</p>
+</li>
+<li>
+<p>Dans le champ "Remote Name", le nom référençant le dépôt d'origine à être cloné.
+"<code>origin</code>" est l'alias de ce dépôt, il est conseillé de garder cette valeur.</p>
+</li>
+<li>
+<p>Gardez la casse "Scan for NetBeans Projects after Clone" cochée.
+(Ce plugin effectue les vérifications nécessaires concernant notamment les dépendances.)</p>
+</li>
+</ul>
+</div>
+</li>
+</ol>
+</div>
+<div class="openblock feature">
+<div class="content">
+<div class="imageblock left">
+<div class="content">
+<a class="image cboxElement" href="https://netbeans.apache.org/kb/docs/ide/images/github-destination.png"><img src="ress/github-destination-small.png" alt="github destination small"></a>
+</div>
+</div>
+</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic" start="11">
+<li>
+<p>Cliquer sur "Finish". Un fois le dépôt cloné, un message "Clone Completed" apparait.</p>
+</li>
+</ol>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="ress/clone-completed.png" alt="clone completed">
+</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic" start="12">
+<li>
+<p>Choisissez l'option souhaitée.</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_adding_files_to_a_git_repository">Adding Files to a Git Repository</h3>
+<div class="paragraph">
+<p>Pour suivre un nouveau fichier ou enregistrer les modifications apportées à un fichier déjà présent dans le dépôt distant Git,
+celui-ci doit être référencé dans le dépôt local.</p>
+</div>
+<div class="paragraph">
+<p>Lors de l'ajout d'un fichier au dépôt local, l'IDE génére and enregistre 
+l'état initial du projet dans un index. Lors de l'exécution d'un "Commit" (validation)
+l'IDE sauvegarde ce nouvel état dans le "HEAD" (un pointeur sur la branche locale où vous vous trouvez).<br>
+<strong>NetBeans vous permet de choisir entre deux manières de fonctionner (workflow) :</strong></p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Description du "Workflow"</th>
+<th class="tableblock halign-left valign-top">Ajouter explicitement les fichiers, nouveaux ou modifiés à l'index. Puis valider (commit) uniquement ceux déja référencé dans l'index dans le HEAD</th>
+<th class="tableblock halign-left valign-top">Ne pas ajouter les fichiers nouveaux ou modifiés à l'index et les valider (commit) directement dans le HEAD</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Étape à suivre</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1. Dans la fenêtre Projets, faire un clique-droit sur le fichier à ajouter.</p>
+<p class="tableblock">[start=2]
+. Dans le menu contextuel, choisissez  <code>Git</code>  &gt;  <code>Add</code> . Ceci ajoute le fichier à l'index avant que vous réalisiez le "commit" (validation).</p>
+<p class="tableblock">[start=3]
+. Dans la fenétre projet, faire un clique-droit sur le fichier à valider (commit).</p>
+<p class="tableblock">[start=4]
+. Dans la boite de dialogue "Commit", selectionner l'icone "Changes between HEAD and Index" ( <span class="image"><img src="ress/changes-head-index.png" alt="changes head index"></span> ). Ceci affiche la liste des fichiers déjà suivis.</p>
+<p class="tableblock">[start=5]
+. Réaliser le "Commit" du/des fichiers comme décrit dans <a href="#committing">Réaliser le "commit" des sources</a> section ci-dessous.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1. Dans la fenêtre Projets, faire un clique-droit sur le fichier à valider (commit).</p>
+<p class="tableblock">[start=2]
+. Dans le menu contextuel, choisissez  <code>Git</code>  &gt;  <code>Commit</code> .</p>
+<p class="tableblock">[start=3]
+. Dans la boite de dialogue "Commit", selectionner l'icone "Changes between HEAD and Working Tree" (<span class="image"><img src="ress/changes-head-wt.png" alt="changes head wt"></span>). Ceci affiche la liste des fichiers pas encore suivis.</p></p>
+<p class="tableblock">[start=4]
+. Réaliser le "Commit" du/des fichiers comme décrit dans <a href="#committing">Réaliser le "commit" des sources</a> section ci-dessous.</p></td>
+</tr>
+</tbody>
+</table>
+<div class="admonitionblock note">
+<table>
+<tbody><tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Le <a href="#viewFileStatus">status</a> du fichier dans HEAD s'affiche en vert à gauche de la barre oblique, comme illustré dans l'image suivante.
+</tr>
+</tbody></table>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="ress/new.png" alt="new">
+</div>
+</div>
+<div class="paragraph">
+<p>L'action fonctionne de manière récursive si elle est invoquée sur des dossiers tout en respectant la structure de contenu propre à NetBeans.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_editing_files">Modifier des Fichiers</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Un fois ouvert un projet sous contrôle de version GIT, vous pouvez modifier les sources et travailler comme avec n'importe quel autre projet NetBeans.</p>
+</div>
+<div class="paragraph">
+<p>Divers composants de l'interface utilisateur sont à votre disposition afin de faciliter l'affichage et l'utilisation des commandes de contrôle de version.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="#_viewing_changes_in_the_source_editor">Affichage des modifications dans l'éditeur</a></p>
+</li>
+<li>
+<p><a href="#_viewing_file_status_information">Visualiser les informations sur l'état du fichier</a></p>
+</li>
+<li>
+<p><a href="#_reverting_changes">Annuler des changements</a></p>
+</li>
+</ul>
+</div>
+<div class="sect2">
+<h3 id="_viewing_changes_in_the_source_editor">Affichage des modifications dans l'éditeur</h3>
+<div class="paragraph">
+<p>Vous suivre, en temps réel, les modifications effectuées sur les fichiers par rapport à la version mémorisée dns le dépot Git.
+L'EDI utilise un système de codes couleur dans la marge gauche de l'éditeur :</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Bleu.</strong> ligne(s) modifiée(s) depuis la dernière révision.</p>
+</li>
+<li>
+<p><strong>Vert.</strong> Ligne(s) ajoutée(s) depuis la dernière révision.</p>
+</li>
+<li>
+<p><strong>Rouge.</strong> Ligne(s) supprimé(s) depuis la dernière révision.</p>
+</li>
+</ul>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="ress/left-margin.png" alt="left margin">
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tbody><tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Vous pouvez cliquer sur un groupe de couleurs dans la marge gauche pour appeler des commandes de gestion de version.
+</td>
+</tr>
+</tbody></table>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="ress/left-widgets.png" alt="left widgets">
+</div>
+</div>
+<div class="paragraph">
+<p>La marge de droite de l'éditeur offre une vue d'ensemble qui affiche les modifications apportées au fichier dans son ensemble, de haut en bas.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="ress/right-margin.png" alt="right margin">
+</div>
+</div>
+<div class="paragraph">
+<p><strong>Note</strong>: Cliquer sur un point spécifique dans la
+marge amene votre curseur à cet emplacement. Passer le curseur de la souris sur la partie colorées dans la marge de droite afficher le nombre de lignes concernées.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="ress/right-lines-number.png" alt="right lines number">
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_viewing_file_status_information">viewing_file_status_information</h3>
+<div class="paragraph">
+<p>Le badge (e.g. <span class="image"><img src="ress/blue-badge.png" alt="blue badge"></span>)
+ indique une information de changement d'état qui se propage depuis le nom du projet jusqu'aux élèments concernés.
+ Les nom des élèments dans l'arborescence est suivit d'un indicateur de statut (en gris).
+ La couleur du nom des fichers nous renseigne sur leur état au regard du système de versioning.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="ress/file-status.png" alt="file status">
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="#_badges_and_color_coding">Badges de couleur</a></p>
+</li>
+<li>
+<p><a href="#_file_status_labels">Status coloré des fichiers</a></p>
+</li>
+<li>
+<p><a href="#_git_versioning_view">Vue "Git Versioning"</a></p>
+</li>
+</ul>
+</div>
+<div class="sect3">
+<h4 id="_badges_and_color_coding">Badges de couleur</h4>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Badge</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Badge bleu</strong>
+<span class="image"><img src="ress/blue-badge.png" alt="blue badge"></span></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Indique la présence de fichiers qui ont été modifiés, ajoutés ou supprimés dans 
+l'arborescence de travail.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Badge Rouge</strong>
+<span class="image"><img src="ress/red-badge.png" alt="red badge"></span></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Marque les projets, dossiers ou packages contenant des fichiers en conflit.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect3">
+<h4 id="_file_status_labels">Status coloré des fichiers</h4>
+<div class="paragraph">
+<p>La couleur du nom des fichiers est porteuse d'information :</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Coleur</th>
+<th class="tableblock halign-left valign-top">Exemple</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Non coloré (noir)</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="image"><img src="ress/black-text.png" alt="black text"></span></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">indique qu'il n'y a pas eu de changement.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Bleu</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="image"><img src="ress/blue-text.png" alt="blue text"></span></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">fichier modifié en local</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Vert</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="image"><img src="ress/green-text.png" alt="green text"></span></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">fichier ajouté en local.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Rouge</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="image"><img src="ress/red-text.png" alt="red text"></span></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Le fichier est en "conflit de fusion" (merge).</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Gris</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="image"><img src="ress/gray-text.png" alt="gray text"></span></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Fichier ignoré par Git, il n'est pas sous contrôle de version.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect3">
+<h4 id="_git_versioning_view">Vue "Git Versioning"</h4>
+<div class="paragraph">
+<p>The Git Versioning view provides you with a real-time list of all of 
+the changes made to files within a selected folder of your local working
+ tree. It opens by default in the bottom panel of the IDE, listing 
+added, deleted or modified files.</p>
+</div>
+<div class="paragraph">
+<p>To open the Versioning view, select a versioned file or folder (e.g. 
+from the Projects, Files, or Favorites window) and either choose  <code>Git</code>  &gt;  <code>Show Changes</code>  from the right-click menu, or choose  <code>Team</code>  &gt;  <code>Show Changes</code>  dans le menu principal. The following window appears in the bottom of the IDE:</p>
+</div>
+<div class="openblock feature">
+<div class="content">
+<div class="imageblock left">
+<div class="content">
+<a class="image cboxElement" href="https://netbeans.apache.org/kb/docs/ide/images/versioning-view.png"><img src="ress/versioning-view-small.png" alt="versioning view small"></a>
+</div>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>La vue "Git Versioning" fournit, en temps réel, une liste de toutes les modifications apportées aux fichiers. 
+Elle s'ouvre par défaut dans le panneau inférieur de l'EDI, répertoriant les fichiers ajoutés, supprimés ou modifiés.</p>
+</div>
+<div class="paragraph">
+<p>La barre d'outils de la vue "Git Versioning" comprend des boutons qui permettent d'appeler les tâches Git les plus courantes sur tous les fichiers affichés dans la liste.
+Le tableau suivant répertorie les commandes Git disponibles dans la barre d'outils de la vue "Git Versioning" :</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Icone</th>
+<th class="tableblock halign-left valign-top">Nom</th>
+<th class="tableblock halign-left valign-top">Fonction</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="image"><img src="ress/changes-head-wt.png" alt="changes head wt"></span></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Changes between HEAD and Working Tree</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Displays a list of files that are either already staged or only modified/created and not staged yet.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="image"><img src="ress/changes-head-index.png" alt="changes head index"></span></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Changes between HEAD and Index</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Displays a list of files that are staged.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="image"><img src="ress/changes-index-wt.png" alt="changes index wt"></span></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Changes between Index and Working Tree</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Displays files that have differences between their staged and Working Tree states.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="image"><img src="ress/refresh.png" alt="refresh"></span></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Refresh Statuses</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Refreshes
+ the status of the selected files and folders. Files displayed in the 
+Versioning view can be refreshed to reflect any changes that may have 
+been made externally.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="image"><img src="ress/open-diff.png" alt="open diff"></span></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Open Diff</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Opens
+ the Diff Viewer providing you with a side-by-side comparison of your 
+local copies and the versions maintained in the repository.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="image"><img src="ress/update.png" alt="update"></span></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Revert Modifications</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Displays the <a href="#revertdialog">Revert Modifications</a> dialog box.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="image"><img src="ress/commit-button.png" alt="commit button"></span></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Commit Changes</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Displays the <a href="#commitdialog">Commit</a> dialog box.</p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>You can access other Git commands in the Versioning view by selecting
+ a table row that corresponds to a modified file, and choosing a command
+ from the right-click menu:</p>
+</div>
+<div class="openblock feature">
+<div class="content">
+<div class="imageblock left">
+<div class="content">
+<a class="image cboxElement" href="https://netbeans.apache.org/kb/docs/ide/images/versioning-right-click.png"><img src="ress/versioning-right-click-small.png" alt="versioning right click small"></a>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_comparing_file_revisions">Comparing File Revisions</h3>
+<div class="paragraph">
+<p>Comparing file versions is a common task when working with versioned 
+projects. The IDE enables you to compare revisions by using the Diff 
+command:</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tbody><tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Several comparing modes - Diff To HEAD, Diff To Tracked, and Diff To - are available in the IDE.
+</td>
+</tr>
+</tbody></table>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Select a versioned file or folder (e.g. from the  <code>Projects</code> ,  <code>Files</code> , or  <code>Favorites</code>  window).</p>
+</li>
+<li>
+<p>Choose  <code>Team</code>  &gt;  <code>Diff</code>  &gt;  <code>Diff to HEAD</code>
+  dans le menu principal.
+A graphical Diff Viewer opens for the selected file(s) and revisions in 
+the IDE’s main window. The Diff Viewer displays two copies in 
+side-by-side panels. The more current copy appears on the right side, so
+ if you are comparing a repository revision against your working tree, 
+the working tree displays in the right panel:</p>
+</li>
+</ol>
+</div>
+<div class="openblock feature">
+<div class="content">
+<div class="imageblock left">
+<div class="content">
+<a class="image cboxElement" href="https://netbeans.apache.org/kb/docs/ide/images/diff-viewer.png"><img src="ress/diff-viewer-small.png" alt="diff viewer small"></a>
+</div>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>The Diff Viewer makes use of the same <a href="#color-coding-table">color coding</a>
+ used elsewhere to display version control changes. In the screen 
+capture displayed above, the green block indicates content that has been
+ added to the more current revision. The red block indicates that 
+content from the earlier revision has been removed from the later. Blue 
+indicates that changes have occurred within the highlighted line(s).</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tbody><tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Other revisions can be selected from the  <code>Diff</code>  and  <code>to</code>  drop-down lists below the Diff Viewer toolbar.
+</td>
+</tr>
+</tbody></table>
+</div>
+<div class="paragraph">
+<p>The Diff Viewer toolbar also includes buttons that enable you to 
+invoke the most common Git tasks on all files displayed in the list. The
+ following table lists the Git commands available in the toolbar of the 
+Diff Viewer:</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Icon</th>
+<th class="tableblock halign-left valign-top">Name</th>
+<th class="tableblock halign-left valign-top">Function</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="image"><img src="ress/changes-head-wt.png" alt="changes head wt"></span></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Changes between HEAD and Working Tree</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Displays a list of files that are either already staged or only modified/created and not staged yet.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="image"><img src="ress/changes-head-index.png" alt="changes head index"></span></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Changes between HEAD and Index</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Displays a list of files that are staged.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="image"><img src="ress/changes-index-wt.png" alt="changes index wt"></span></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Changes between Index and Working Tree</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Displays files that have differences between their staged and working tree states.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="image"><img src="ress/nextdiff.png" alt="nextdiff"></span></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Go to Next Difference</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Displays next difference in the file.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="image"><img src="ress/prevdiff.png" alt="prevdiff"></span></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Go to Previous Difference</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Displays previous difference in the file.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="image"><img src="ress/refresh.png" alt="refresh"></span></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Refresh Statuses</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Refreshes
+ the status of the selected files and folders. Files displayed in the 
+Versioning window can be refreshed to reflect any changes that may have 
+been made externally.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="image"><img src="ress/update.png" alt="update"></span></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Revert Modifications</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Displays the <a href="#revertdialog">Revert Modifications</a> dialog box.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="image"><img src="ress/commit-button.png" alt="commit button"></span></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Commit Changes</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Displays the <a href="#commitdialog">Commit</a> dialog box.</p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>If you are performing a diff on your local copy in the Working Tree, 
+the IDE enables you to make changes directly from within the Diff 
+Viewer. To do so, you can either place your cursor within the right pane
+ of the Diff Viewer and modify your file accordingly, otherwise make use
+ of the inline icons that display adjacent to each highlighted change:</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Icon</th>
+<th class="tableblock halign-left valign-top">Name</th>
+<th class="tableblock halign-left valign-top">Function</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="image"><img src="ress/insert.png" alt="insert"></span></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Replace</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Inserts the highlighted text into your Working Tree copy.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="image"><img src="ress/arrow.png" alt="arrow"></span></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Move All</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Reverts the whole local Working Tree copy.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="image"><img src="ress/remove.png" alt="remove"></span></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Remove</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Removes the highlighted text from the local Working Tree copy.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect2">
+<h3 id="_reverting_changes">Annuler des changements</h3>
+<div class="paragraph">
+<p>To throw away local changes made to selected files in your Working 
+Tree and replace those files with the ones in the Index or HEAD:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Select a versioned file or folder (e.g. from the  <code>Projects</code> ,  <code>Files</code> , or  <code>Favorites</code>  window).</p>
+</li>
+<li>
+<p>Choose  <code>Team</code>  &gt;  <code>Revert Modifications</code>  dans le menu principal.
+The  <code>Revert Modifications</code>  dialog box displays.</p>
+</li>
+</ol>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="ress/revert.png" alt="revert">
+</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Specify additional options (e.g.,  <code>Revert only Uncommitted Changes in Index to HEAD</code> ) .</p>
+</li>
+<li>
+<p>Click Revert.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>The IDE replaces the selected files with those specified in <a href="#three">step 3</a> above.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_committing_sources_to_a_repository">Committing Sources to a Repository</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>To commit files to the Git repository:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>In the  <code>Projects</code>  window, right-click the file(s) you want to commit.</p>
+</li>
+<li>
+<p>In the context menu, choose  <code>Git</code>  &gt;  <code>Commit</code> .</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>The  <code>Commit</code>  dialog box displays.</p>
+</div>
+<div class="openblock feature">
+<div class="content">
+<div class="imageblock left">
+<div class="content">
+<a class="image cboxElement" href="https://netbeans.apache.org/kb/docs/ide/images/commit.png"><img src="ress/commit-small.png" alt="commit small"></a>
+</div>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>The  <code>Commit</code>  dialog box contains the following components:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>Commit Message</code>  text area intended for describing the change being committed</p>
+</li>
+<li>
+<p><code>Author</code>  and  <code>Commiter</code>  drop-down lists that
+ allow to differentiate between those who made the change and who 
+physically committed the file if necessary.</p>
+</li>
+<li>
+<p><code>Files to Commit</code>  section that lists:</p>
+</li>
+<li>
+<p>all files modified,</p>
+</li>
+<li>
+<p>all files that have been deleted in the Working Tree (locally),</p>
+</li>
+<li>
+<p>all new files (i.e. files that do not yet exist in the Git repository),</p>
+</li>
+<li>
+<p>all files that you have renamed.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Two toggle buttons that switch the mode in which the actual commit is to be performed are available here:</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">UI Component</th>
+<th class="tableblock halign-left valign-top">Name</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="image"><img src="ress/changes-head-index.png" alt="changes head index"></span></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Changes between HEAD and Index</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Displays a list of files that are staged.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="image"><img src="ress/changes-head-wt.png" alt="changes head wt"></span></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Changes between HEAD and Working Tree</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Displays a list of files that are either already staged or only modified/created and not staged yet.</p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p><strong>Note</strong>: To specify here whether to exclude individual files from the commit, either deselect the checkbox in the first column called  <code>Commit</code>  or right-click a file row in the  <code>Commit Action</code>  column and choose  <code>Exclude from commit</code>  from the pop-up menu. To display the Diff Viewer here, right-click a file row in the  <code>Commit Action</code>  column and choose  <code>Diff</code>  from the pop-up menu.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>Update Issue</code>  section intended for tracking issues related to the change being committed.</p>
+</li>
+</ul>
+</div>
+<div class="admonitionblock note">
+<table>
+<tbody><tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+You need to install the JIRA or Subversion plugin to start tracking issues in the IDE.
+</td>
+</tr>
+</tbody></table>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Type in a commit message in the  <code>Commit Message</code>  text area. Alternatively, you can do any of the following:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>click the  <code>Recent Messages</code>  ( <span class="image"><img src="ress/recent-msgs.png" alt="recent msgs"></span> ) icon located in the upper right corner to view and select from a list of messages that you have previously used,</p>
+</li>
+<li>
+<p>click the  <code>Load Template</code>  (<span class="image"><img src="ress/msg-template.png" alt="msg template"></span>) icon located in the upper right corner to select a message template.</p>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>After specifying actions for individual files, click  <code>Commit</code>
+ .
+The IDE executes the commit and stores your snapshots to the repository.
+ The IDE’s status bar, located in the bottom right of the interface, 
+displays as the commit action takes place. Upon a successful commit, 
+versioning badges disappear in the  <code>Projects</code> ,  <code>Files</code>  and  <code>Favorites</code>  windows, and the color coding of committed files returns to black.</p>
+</li>
+</ol>
+</div>
+</li>
+</ul>
+</div>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_working_with_branches">Working with Branches</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The IDE’s Git support enables you to maintain different versions of an entire code base using branches.</p>
+</div>
+<div class="paragraph">
+<p>When working with branches in the IDE, the following actions are supported:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="#_creating_a_branch">Creating</a></p>
+</li>
+<li>
+<p><a href="#_checking_out">Checking out</a></p>
+</li>
+<li>
+<p><a href="#_merging">Merging</a></p>
+</li>
+<li>
+<p><a href="#_deleting">Deleting</a></p>
+</li>
+</ul>
+</div>
+<div class="sect2">
+<h3 id="_creating_a_branch">Creating a Branch</h3>
+<div class="paragraph">
+<p>To create a local branch, if you want to work on a separate version 
+of your file system for stabilization or experimentation purposes 
+without disturbing the main trunk, complete the following steps:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>In the Projects or Files window, choose a project or folder from the repository in which you want to create the branch.</p>
+</li>
+<li>
+<p>In the main menu, choose Team &gt; Branch/Tag &gt; Create Branch.</p>
+</li>
+</ol>
+</div>
+<div class="admonitionblock note">
+<table>
+<tbody><tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+As an alternative right-click the versioned project or folder and choose
+ Git &gt; Branch/Tag &gt; Create Branch in the popup menu.
+</td>
+</tr>
+</tbody></table>
+</div>
+<div class="paragraph">
+<p>The Create Branch dialog box displays.</p>
+</div>
+<div class="openblock feature">
+<div class="content">
+<div class="imageblock left">
+<div class="content">
+<a class="image cboxElement" href="https://netbeans.apache.org/kb/docs/ide/images/create-branch.png"><img src="ress/create-branch-small.png" alt="create branch small"></a>
+</div>
+</div>
+</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>In the Branch Name field, enter the name of the branch being created.</p>
+</li>
+<li>
+<p>Type a specific revision of the selected item by entering a commit 
+ID, existing branch, or tag name in the Revision field or press Select 
+to view the list of revisions maintained in the repository.</p>
+</li>
+<li>
+<p>(Optional) In the Select Revision dialog box, expand Branches and 
+choose the branch required, specify the commit ID in the adjacent list, 
+and press Select.</p>
+</li>
+<li>
+<p>Review the Commit ID, Author, Message fields information specific to the revision being branched from and click Create.
+The branch is added to the  <code>Branches/Local</code>  folder of the Git repository.</p>
+</li>
+</ol>
+</div>
+<div class="openblock feature">
+<div class="content">
+<div class="imageblock left">
+<div class="content">
+<a class="image cboxElement" href="https://netbeans.apache.org/kb/docs/ide/images/branch-added.png"><img src="ress/branch-added-small.png" alt="branch added small"></a>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_checking_out">Checking Out</h3>
+<div class="paragraph">
+<p>If you need to edit files on a branch that already exists, you can check out the branch to copy the files to your Working Tree.</p>
+</div>
+<div class="paragraph">
+<p>To check out a revision, perform the following:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Choose Team &gt; Checkout &gt; Checkout Revision dans le menu principal.
+The Checkout Selected Revision dialog box displays.</p>
+</li>
+</ol>
+</div>
+<div class="openblock feature">
+<div class="content">
+<div class="imageblock left">
+<div class="content">
+<a class="image cboxElement" href="https://netbeans.apache.org/kb/docs/ide/images/chkout-rev.png"><img src="ress/chkout-rev-small.png" alt="chkout rev small"></a>
+</div>
+</div>
+</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Specify the revision required by entering a commit ID, existing 
+branch, or tag name in the Revision field or press Select to view the 
+list of revisions maintained in the repository.</p>
+</li>
+<li>
+<p>Skip if you did not press Select in the previous step. In the Select 
+Revision dialog box, expand Branches and choose the branch required, 
+specify the commit ID in the adjacent list if required, and press 
+Select.</p>
+</li>
+</ol>
+</div>
+<div class="admonitionblock note">
+<table>
+<tbody><tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+If the specified revision refers to a valid commit that is not marked 
+with a branch name, your HEAD becomes detached and you are no longer on 
+any branch.
+</td>
+</tr>
+</tbody></table>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Review the Commit ID, Author, Message fields information specific to the revision being checked out.</p>
+</li>
+<li>
+<p>To create a new branch out of the checked out revision, choose the 
+Checkout as New Branch option and enter the name in the Branch Name 
+field.</p>
+</li>
+<li>
+<p>Press Checkout to check out revision.
+Files in the Working Tree and in the Index are updated to match the version in the specified revision.</p>
+</li>
+</ol>
+</div>
+<div class="admonitionblock note">
+<table>
+<tbody><tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+If you want to switch your files to a branch that already exists (e.g., 
+to a commit that is not at the top of one of your branches), you can use
+ the Team &gt; Git &gt; Branch &gt; Switch To Branch command, specify 
+the branch in the Switch to Selected Branch dialog box, check it out as a
+ new branch (optionally), and press Switch.
+</td>
+</tr>
+</tbody></table>
+</div>
+<div class="paragraph">
+<p>The IDE supports context-sensitive checkout of the file(s), 
+folder(s), or project(s) currently selected in the IDE. To check out 
+some files (not a branch) from the Index, complete the following steps:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Choose Team &gt; Checkout &gt; Checkout Files dans le menu principal.
+The Checkout Selected Paths dialog box displays.</p>
+</li>
+</ol>
+</div>
+<div class="openblock feature">
+<div class="content">
+<div class="imageblock left">
+<div class="content">
+<a class="image cboxElement" href="https://netbeans.apache.org/kb/docs/ide/images/chkout-path.png"><img src="ress/chkout-path-small.png" alt="chkout path small"></a>
+</div>
+</div>
+</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Choose the Update Index with Entries from the Selected Revision 
+option.
+If selected, the Index is updated with the state in the selected 
+revision prior to the checkout itself (i.e., the selected files both in 
+the Working Tree and Index are updated).</p>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Specify the revision required by entering a commit ID, existing 
+branch, or tag name in the Revision field or press Select to view the 
+list of revisions maintained in the repository.</p>
+</li>
+<li>
+<p>Skip if you did not press Select in the previous step. In the Select 
+Revision dialog box, expand Branches and choose the branch required, 
+specify the revision number in the adjacent list if required, and press 
+Select.</p>
+</li>
+<li>
+<p>Press Checkout to complete the checkout.</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_merging">Merging</h3>
+<div class="paragraph">
+<p>To port modifications from  a repository revision to the Working Tree, do as follows:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Choose Team &gt; Branch/Tag &gt; Merge Revision dans le menu principal.
+The Merge Revision dialog box displays.</p>
+</li>
+</ol>
+</div>
+<div class="openblock feature">
+<div class="content">
+<div class="imageblock left">
+<div class="content">
+<a class="image cboxElement" href="https://netbeans.apache.org/kb/docs/ide/images/merge.png"><img src="ress/merge-small.png" alt="merge small"></a>
+</div>
+</div>
+</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Specify the revision required by entering a commit ID, existing 
+branch, or tag name in the Revision field or press Select to view the 
+list of revisions maintained in the repository.</p>
+</li>
+<li>
+<p>Skip if you did not press Select in the previous step. In the Select 
+Revision dialog box, expand Branches and choose the branch required, 
+specify the commit ID in the adjacent list if required, and press 
+Select.</p>
+</li>
+<li>
+<p>Press Merge.
+A three-way merge between the current branch, your Working Tree contents, and the specified branch is done.</p>
+</li>
+</ol>
+</div>
+<div class="admonitionblock note">
+<table>
+<tbody><tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+If a merge conflict occurs, the conflicting file is marked with <a href="#badges">a red badge</a> to indicate this.
+</td>
+</tr>
+</tbody></table>
+</div>
+<div class="admonitionblock note">
+<table>
+<tbody><tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+After merging you must still <a href="#committing">commit</a> the changes in order for them to be added to the HEAD.
+</td>
+</tr>
+</tbody></table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_deleting_a_branch">Deleting a Branch</h3>
+<div class="paragraph">
+<p>To delete an unnecessary local branch, complete the following steps:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Choose Team &gt; Repository Browser dans le menu principal.</p>
+</li>
+<li>
+<p>In the Git Repository Browser, choose the branch to be deleted.</p>
+</li>
+</ol>
+</div>
+<div class="admonitionblock note">
+<table>
+<tbody><tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+The branch must be inactive, i.e. not currently checked out into the Working Tree.
+</td>
+</tr>
+</tbody></table>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Right-click the selected branch and choose Delete Branch from the popup menu.</p>
+</li>
+<li>
+<p>In the Delete Branch dialog box, press OK to confirm the branch deletion.
+The branch is removed from the local repository as well as the Git Repository Browser.</p>
+</li>
+</ol>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_working_with_remote_repositories">Working with Remote Repositories</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>When you work with other developers you need to share your work, 
+which involves fetching, pushing, and pulling data to and from remote 
+repositories hosted on the Internet or network.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="#fetcingh">Fetching</a></p>
+</li>
+<li>
+<p><a href="#pulling">Pulling</a></p>
+</li>
+<li>
+<p><a href="#pushing">Pushing</a></p>
+</li>
+</ul>
+</div>
+<div class="sect2">
+<h3 id="_fetching">Fetching</h3>
+<div class="paragraph">
+<p>Fetching gets the changes from the original remote repository that 
+you do not have yet. It never changes any of your local branches. 
+Fetching gets all the branches from remote repositories, which you can 
+merge into your branch or just inspect at any time.</p>
+</div>
+<div class="paragraph">
+<p>To fetch the updates, do as follows:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Choose Team &gt; Remote &gt; Fetch.
+The Fetch from Remote Repository wizard displays.</p>
+</li>
+</ol>
+</div>
+<div class="openblock feature">
+<div class="content">
+<div class="imageblock left">
+<div class="content">
+<a class="image cboxElement" href="https://netbeans.apache.org/kb/docs/ide/images/fetch.png"><img src="ress/fetch-small.png" alt="fetch small"></a>
+</div>
+</div>
+</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>At the Remote Repository page of the wizard, select either the 
+Configured repository (to use the path to the repository configured 
+earlier) or Specify Git Repository Location option (to define the path 
+to a remote repository that has not been accessed yet, its name, login, 
+password, and proxy configuration if required) and click Next.</p>
+</li>
+<li>
+<p>At the Remote Branches page of the wizard, choose the branches to fetch changes from and click Finish.
+A local copy of a remote branch is created. The selected branch are updated in the  <code>Branches</code>  &gt;  <code>Remote</code>  directory in the Git Repository Browser.
+Next the fetched updates can be merged into a local branch.</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_pulling">Pulling</h3>
+<div class="paragraph">
+<p>When pulling some updates from a remote Git repository, the changes 
+are fetched from it and merged into the current HEAD of your local 
+repository.
+To perform pulling, complete the following steps:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Choose Team &gt; Remote &gt; Pull.
+The Pull from Remote Repository wizard displays.</p>
+</li>
+</ol>
+</div>
+<div class="openblock feature">
+<div class="content">
+<div class="imageblock left">
+<div class="content">
+<a class="image cboxElement" href="https://netbeans.apache.org/kb/docs/ide/images/pull.png"><img src="ress/pull-small.png" alt="pull small"></a>
+</div>
+</div>
+</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>At the Remote Repository page of the wizard, select either the 
+Configured repository (to use the path to the repository configured 
+earlier) or Specify Git Repository Location option (to define the path 
+to a remote repository that has not been accessed yet, its name, and 
+login and password if required) and click Next.</p>
+</li>
+<li>
+<p>At the Remote Branches page of the wizard, choose the branches to be pulled changes from and click Finish.
+Your local repository is synchronized with the origin repository.</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_pushing">Pushing</h3>
+<div class="paragraph">
+<p>Pour To contribute changes from your local Git repository into a public Git repository, perform the following steps:</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tbody><tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+When you are going to push your commits into a repository and some other
+ changes have been pushed in the meantime, you need to pull and merge 
+those changes first.
+</td>
+</tr>
+</tbody></table>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Choose Team &gt; Remote &gt; Push.
+The Push to Remote Repository wizard displays.</p>
+</li>
+</ol>
+</div>
+<div class="openblock feature">
+<div class="content">
+<div class="imageblock left">
+<div class="content">
+<a class="image cboxElement" href="https://netbeans.apache.org/kb/docs/ide/images/push.png"><img src="ress/push-small.png" alt="push small"></a>
+</div>
+</div>
+</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>At the Remote Repository page of the wizard, select either the 
+Configured repository (to use the path to the repository configured 
+earlier) or Specify Git Repository Location option (to define the path 
+to a remote repository that has not been accessed yet, its name, and 
+login and password if required) and click Next.</p>
+</li>
+<li>
+<p>At the Select Local Branches page, choose the branch(es) to push your edits to and click Next.</p>
+</li>
+<li>
+<p>At the Update Local References page, choose the branch(es) to be 
+updated in the Remotes directory of your local repository and click 
+Finish.
+The specified remote repository branch is updated with the latest state 
+of your local branch.</p>
+</li>
+</ol>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_summary">Conclusion</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Ce didacticiel a montré comment effectuer des tâches de base de gestion de versions dans l'IDE en vous guidant à travers
+le flux de travail standard lors de l'utilisation du support Git de l'IDE.
+Il a montré comment configurer un projet versionné et effectuer des tâches de base sur des fichiers versionnés tout en vous présentant certaines
+des fonctionnalités spécifiques à Git incluses dans l'IDE.</p>
+</div>
+</div>
+</div>
+            
+<section class="tools">
+    <ul class="menu align-center">
+        <li><a title="Facebook" href="https://www.facebook.com/NetBeans"><i class="fa fa-md fa-facebook"></i></a></li>
+        <li><a title="Twitter" href="https://twitter.com/netbeans"><i class="fa fa-md fa-twitter"></i></a></li>
+        <li><a title="Github" href="https://github.com/apache/netbeans"><i class="fa fa-md fa-github"></i></a></li>
+        <li><a title="YouTube" href="https://www.youtube.com/user/netbeansvideos"><i class="fa fa-md fa-youtube"></i></a></li>
+        <li><a title="Slack" href="https://tinyurl.com/netbeans-slack-signup/"><i class="fa fa-md fa-slack"></i></a></li>
+        <li><a title="JIRA" href="https://issues.apache.org/jira/projects/NETBEANS/summary"><i class="fa fa-mf fa-bug"></i></a></li>
+    </ul>
+    <ul class="menu align-center">
+        
+        <li><a href="https://github.com/apache/netbeans-website/blob/master/netbeans.apache.org/src/content/kb/docs/ide/git.asciidoc" title="See this page in github"><i class="fa fa-md fa-edit"></i> See this page in GitHub.</a></li>
+    </ul>
+</section>
+
+        </div>
+        
+
+<div class="grid-container incubator-area" style="margin-top: 64px">
+    <div class="grid-x grid-padding-x">
+        <div class="large-auto cell text-center">
+            <a href="https://www.apache.org/">
+                <img style="width: 320px" title="Apache Software Foundation" src="ress/asf_logo_wide.svg">
+            </a>
+        </div>
+        <div class="large-auto cell text-center">
+            <a href="https://www.apache.org/events/current-event.html">
+               <img style="width:234px; height: 60px;" title="Apache Software Foundation current event" src="ress/current-event-234x60.png">
+            </a>
+        </div>
+    </div>
+</div>
+<footer>
+    <div class="grid-container">
+        <div class="grid-x grid-padding-x">
+            <div class="large-auto cell">
+                
+                <h1><a href="https://netbeans.apache.org/about/index.html">About</a></h1>
+                <ul>
+                    <li><a href="https://netbeans.apache.org/community/who.html">Who's Who</a></li>
+                    <li><a href="https://www.apache.org/foundation/thanks.html">Thanks</a></li>
+                    <li><a href="https://www.apache.org/foundation/sponsorship.html">Sponsorship</a></li>
+                    <li><a href="https://www.apache.org/security/">Security</a></li>
+                </ul>
+            </div>
+            <div class="large-auto cell">
+                <h1><a href="https://netbeans.apache.org/community/index.html">Community</a></h1>
+                <ul>
+                    <li><a href="https://netbeans.apache.org/community/mailing-lists.html">Mailing lists</a></li>
+                    <li><a href="https://netbeans.apache.org/community/committer.html">Becoming a committer</a></li>
+                    <li><a href="https://netbeans.apache.org/community/events.html">NetBeans Events</a></li>
+                    <li><a href="https://www.apache.org/events/current-event.html">Apache Events</a></li>
+                </ul>
+            </div>
+            <div class="large-auto cell">
+                <h1><a href="https://netbeans.apache.org/participate/index.html">Participate</a></h1>
+                <ul>
+                    <li><a href="https://netbeans.apache.org/participate/submit-pr.html">Submitting Pull Requests</a></li>
+                    <li><a href="https://netbeans.apache.org/participate/report-issue.html">Reporting Issues</a></li>
+                    <li><a href="https://netbeans.apache.org/participate/index.html#documentation">Improving the documentation</a></li>
+                </ul>
+            </div>
+            <div class="large-auto cell">
+                <h1><a href="https://netbeans.apache.org/help/index.html">Get Help</a></h1>
+                <ul>
+                    <li><a href="https://netbeans.apache.org/help/index.html#documentation">Documentation</a></li>
+                    <li><a href="https://netbeans.apache.org/wiki/index.asciidoc">Wiki</a></li>
+                    <li><a href="https://netbeans.apache.org/help/index.html#support">Community Support</a></li>
+                    <li><a href="https://netbeans.apache.org/help/commercial-support.html">Commercial Support</a></li>
+                </ul>
+            </div>
+            <div class="large-auto cell">
+                <h1><a href="https://netbeans.apache.org/download/nb110/nb110.html">Download</a></h1>
+                <ul>
+                    <li><a href="https://netbeans.apache.org/download/index.html">Releases</a></li>                    
+                    <li><a href="https://plugins.netbeans.apache.org/">Plugins</a></li>
+                    <li><a href="https://netbeans.apache.org/download/index.html#source">Building from source</a></li>
+                    <li><a href="https://netbeans.apache.org/download/index.html#previous">Previous releases</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</footer>
+<div class="footer-disclaimer">
+    <div class="footer-disclaimer-content">
+        <p>Copyright © 2017-2020 <a href="https://www.apache.org/">The Apache Software Foundation</a>.</p>
+        <p>Licensed under the Apache <a href="https://www.apache.org/licenses/">license</a>, version 2.0</p>
+        <div style="max-width: 40em; margin: 0 auto">
+            <p>Apache, Apache NetBeans, NetBeans, the Apache feather logo and the Apache NetBeans logo are trademarks of <a href="https://www.apache.org/">The Apache Software Foundation</a>.</p>
+            <p>Oracle and Java are registered trademarks of Oracle and/or its affiliates.</p>
+        </div>
+        
+    </div>
+</div>
+
+
+
+        <script src="ress/jquery-3.js"></script>
+        <script src="ress/what-input.js"></script>
+        <script src="ress/jquery.js"></script>
+        <script src="ress/foundation.js"></script>
+        <script src="ress/netbeans.js"></script>
+        <script>
+            
+            $(function(){ $(document).foundation(); });
+        </script>
+        
+        <script src="ress/highlight.js"></script>
+        <script>
+         $(document).ready(function() { $("pre code").each(function(i, block) { hljs.highlightBlock(block); }); }); 
+        </script>
+        
+    
+
+<div id="cboxOverlay" style="display: none;"></div><div id="colorbox" class="" role="dialog" tabindex="-1" style="display: none;"><div id="cboxWrapper"><div><div id="cboxTopLeft" style="float: left;"></div><div id="cboxTopCenter" style="float: left;"></div><div id="cboxTopRight" style="float: left;"></div></div><div style="clear: left;"><div id="cboxMiddleLeft" style="float: left;"></div><div id="cboxContent" style="float: left;"><div id="cboxTitle" style="float: left;"></div><div id="cboxCurrent" style="float: left;"></div><button type="button" id="cboxPrevious"></button><button type="button" id="cboxNext"></button><button type="button" id="cboxSlideshow"></button><div id="cboxLoadingOverlay" style="float: left;"></div><div id="cboxLoadingGraphic" style="float: left;"></div></div><div id="cboxMiddleRight" style="float: left;"></div></div><div style="clear: left;"><div id="cboxBottomLeft" style="float: left;"></div><div id="cboxBottomCenter" style="float: left;"></div><div id="cboxBottomRight" style="float: left;"></div></div></div><div style="position: absolute; width: 9999px; visibility: hidden; display: none; max-width: none;"></div></div></body></html>
